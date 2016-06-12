@@ -6,20 +6,17 @@ myApp.controller('mainController', ['$scope', '$http', function($scope, $http) {
 	$scope.desc = false;
 	$scope.getUserDetails = function() {
 		$http.get('https://api.github.com/users/' + $scope.username).then(function(response) {
-			if (response.message == 'Not Found') {
-				alert('User not found!');
-			} else {
-				for (var s = 0; s < $scope.userArr.length; s++) {
-					if (response.data.id == $scope.userArr[s].id) {
-						alert('User has already been added!');
-						return;
-					}
+			for (var s = 0; s < $scope.userArr.length; s++) {
+				if (response.data.id == $scope.userArr[s].id) {
+					alert('User has already been added!');
+					return;
 				}
-				$scope.userArr.push(response.data);
-				$scope.printUsers(null);
-				$scope.username = '';
 			}
+			$scope.userArr.push(response.data);
+			$scope.printUsers(null);
+			$scope.username = '';
 		}, function(response) {
+			alert('User not found!');
 			console.log('Some Error has occured. Please Try Again Later.');
 		})
 	}
@@ -34,10 +31,19 @@ myApp.controller('mainController', ['$scope', '$http', function($scope, $http) {
 	}
 	$scope.printUsers = function(ev) {
 		if (ev !== null) {
+			var sortBtns = ev.target.parentNode.children;
+			for (var i = 0; i < sortBtns.length; i++) {
+				sortBtns[i].className = "sort-button";
+			}
 			if ($scope.sortingType === ev.target.value) {
 				$scope.desc = !$scope.desc;
+				if ($scope.desc) ev.target.className = 'sort-button sort-desc-ang';
+				else ev.target.className = 'sort-button sort-asc-ang';
+				$scope.userArr.reverse();
+				return;
 			} else {
 				$scope.desc = false;
+				ev.target.className = 'sort-button sort-asc-ang';
 			}
 			$scope.sortingType = ev.target.value;
 		}

@@ -1,0 +1,29 @@
+<html>
+
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+<body >
+<div  class ="main-container" >
+<div class='form-container'>
+<input type="text"  id="username">
+<button class="add-button" onclick ="getUserDetails()">Add</button>
+</div>
+<div  class="division-line"></div>
+<div class="sort-container">
+	<div class="sort-button"   >Sort By :</div>
+	<div class="sort-button selected-asc" onclick="printUsers(this)" value="name"><div>Name</div><div class="symbol"></div></div>
+	<div class="sort-button" onclick="printUsers(this)" value="location"><div>Location</div><div class="symbol"></div></div>
+	<div class="sort-button" onclick="printUsers(this)" value="followers"><div>Followers</div><div class="symbol"></div></div>
+</div>
+<div id = "card-container" class = 'card-container'>
+
+ 	
+</div>
+</div>
+<script src="/javascripts/index/script-normal.js"></script>
+</body>
+
+</html>

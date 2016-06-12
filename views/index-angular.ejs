@@ -1,0 +1,40 @@
+<html>
+
+<head>
+
+<script src="//code.angularjs.org/1.3.0-rc.1/angular.min.js"></script>
+<script src="/javascripts/index/script-angular.js"></script>
+
+ <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+<body ng-app="userCardApp">
+<div  class ="main-container" ng-controller="mainController">
+<div class='form-container'>
+<input type="text" ng-model="username" name="username">
+<button class="add-button" ng-click ="getUserDetails()">Add</button>
+</div>
+<div  class="division-line"></div>
+<div class="sort-container">
+	<div class="sort-button" style="margin-top: 4px;"  >Sort By :</div>
+	<button class="sort-button sort-asc-ang" ng-click="printUsers($event)" value="login">Name</button>
+	<button class="sort-button" ng-click="printUsers($event)" value="location">Location</button>
+	<button class="sort-button" ng-click="printUsers($event)" value="followers">Followers</button>
+</div>
+<div class = 'card-container'>
+<div class="each-card" ng-repeat="obj in userArr">
+
+	<button   class="delete-button" ng-click="deleteUser($event)" value="{{obj.id}}">X</button>
+	<a href="{{obj.html_url}}" target="_blank">
+	<div><img ng-src="{{obj.avatar_url}}" alt="avatar" height="240" width="240"></div>
+	<div class= "card-content">
+		<h3>{{obj.login}}</h3>
+  		<div><h5><span>Location :	</span><span style = " font-weight: normal;">{{obj.location}}</span></h5></div>
+  		<div><h5><span>Followers :	</span><span>{{obj.followers}}</span></h5></div>
+  	</div>
+  	</a>
+</div>
+</div>
+</div>
+</body>
+
+</html>
